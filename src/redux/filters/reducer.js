@@ -100,10 +100,10 @@ const reducer = (state = initialState, action) => {
         return updatedState.filter((author) => author.author_name === action.payload);
 
         case 'show_all': 
-        return updatedState.map(item=> item.show=true && item);
+        return initialState.map(item => item.show=true && item);
 
         case "FILTER_BY_TITLE":
-            const filteredBlogs= updatedState.map(item=>{
+            const filteredBlogs= initialState.map(item=>{
                 const titleArray= item.blog_title.toLocaleLowerCase().split(" "); //["Learn" ,"c++", "in"," 30"," days"]
                 if(titleArray.includes(action.payload.toLocaleLowerCase())) {
                     item.show= true;
