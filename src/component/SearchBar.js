@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useCallback} from 'react';
 import { useDispatch } from 'react-redux/es/exports';
 
 
 const SearchBar = () => {
     const dispatch = useDispatch();
 
-    const [text,setText] = useState("");
-    const handleInput = (e) => {
-        setText(e.target.value);
+    const handleChange = (value) => {
         dispatch({
             type: "FILTER_BY_TITLE",
-            payload: e.target.value
+            payload: value
         })
-
     }
+
+    const debounce = (func) => {
+        let timer;
+        return function (...args) {
+          const context = this;
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            timer = null;
+            func.apply(context, args);
+          }, 1000);
+        };
+      };
+
+      const optimizedFn = useCallback(debounce(handleChange), []);
+
 
     return (
 
@@ -25,8 +37,7 @@ const SearchBar = () => {
         type="search"
         name="search"
         placeholder="Search"
-        value={text}
-        onChange={(e)=>handleInput(e)}
+        onChange={(e) => optimizedFn(e.target.value)}
     
     />
     <img

@@ -103,7 +103,6 @@ const reducer = (state = initialState, action) => {
         return updatedState.map(item=> item.show=true && item);
 
         case "FILTER_BY_TITLE":
-            console.log("hi");
             const filteredBlogs= updatedState.map(item=>{
                 const titleArray= item.blog_title.toLocaleLowerCase().split(" "); //["Learn" ,"c++", "in"," 30"," days"]
                 if(titleArray.includes(action.payload.toLocaleLowerCase())) {
