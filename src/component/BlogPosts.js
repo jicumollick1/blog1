@@ -7,8 +7,6 @@ import SingleBlog from './SingleBlog';
 
 const BlogPosts = () => {
     const blogs = useSelector((state) => state.filter);
-
-    console.log(blogs.length);
     return (
          
           <div
@@ -17,8 +15,7 @@ const BlogPosts = () => {
 
         {
             blogs.map((blog)=> (
-
-                <SingleBlog blog={blog} key={blog.id}></SingleBlog>
+               blog.show &&  <SingleBlog blog={blog} key={blog.id}></SingleBlog>
             ))
         }
 

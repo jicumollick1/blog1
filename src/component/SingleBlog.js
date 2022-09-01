@@ -3,7 +3,7 @@ import React from 'react';
 import { categorySearch, authorImgSearch, authorTitleSearch } from '../redux/filters/actions';
 import { useDispatch } from 'react-redux/es/exports';
 
-const SingleBlog = ({blog}) => {
+const SingleBlog = ({blog,key}) => {
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const SingleBlog = ({blog}) => {
     return (
         
         <div
-        class="flex flex-col rounded-lg shadow-lg overflow-hidden"
+        class="flex flex-col rounded-lg shadow-lg overflow-hidden" key={key}
     >
         <div class="flex-shrink-0">
             <img
